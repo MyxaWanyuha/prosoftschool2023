@@ -1,9 +1,7 @@
 #include "OtherComparisionOperations.h"
 
 class NewA 
-    : public OtherComparisionOperators<NewA>,
-    public OtherComparisionOperators<NewA, const int>,
-    public OtherComparisionOperators<NewA, const double>
+    : public OtherComparisionOperators<NewA>
 {
 public:
     NewA(int a, int b) : m_a(a), m_b(b) {}

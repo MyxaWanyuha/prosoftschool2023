@@ -1,23 +1,27 @@
 #pragma once
 
-template<typename T, typename Compare = const T&>
+template<typename T>
 class OtherComparisionOperators {
 public:
-    auto derived() const noexcept { return static_cast<const T&>(*this); }
-
+    template<typename Compare>
     bool operator<=(Compare other) const {
         return !(derived() > other);
     }
 
+    template<typename Compare>
     bool operator>=(Compare other) const {
         return !(derived() < other);
     }
 
+    template<typename Compare>
     bool operator==(Compare other) const {
         return derived() <= other && derived() >= other;
     }
 
+    template<typename Compare>
     bool operator!=(Compare other) const {
         return !(derived() == other);
     }
+private:
+    const T& derived() const noexcept { return static_cast<const T&>(*this); }
 };
